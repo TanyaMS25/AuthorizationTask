@@ -1,0 +1,15 @@
+﻿@page
+@model RegistrationModel
+@{
+    var login = "";
+
+    var password = "";
+}
+<div class="text-center">
+    <p>Регистрация</p>
+    <p>Придумайте логин</p>
+    <input type="text" id="login" value="@login" />
+    <p>Придумайте пароль</p>
+    <input type="password" id="password" value="@password" />
+    <input type="button" value="Зарегистрироваться" onclick="OnGet" />
+</div>

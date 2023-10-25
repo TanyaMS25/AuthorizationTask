@@ -1,0 +1,19 @@
+﻿@page
+@model AuthorizationModel
+
+@{
+    var login = "";
+
+    var password = "";
+
+}
+<div class="text-center">
+    <p>Авторизация</p>
+    <p>Введите логин</p>
+    <input type="text" id="login" value="@login" />
+    <p>Введите пароль</p>
+    <input type="password" id="password" value="@password" />
+    <input type="button" value="Войти" onclick="OnGet" />
+    <p>Еще не зарегистрированы?</p>
+    <a class="nav-link text-dark" asp-area="" asp-page="/Registration">Регистрация</a>
+</div>
