@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AuthorizationTask.Data.Migrations\AuthorizationTask.Data.Migrations.csproj" />
     <ProjectReference Include="..\AuthorizationTask.Data\AuthorizationTask.Data.csproj" />
+    <ProjectReference Include="..\AuthorizationTask.Identity\AuthorizationTask.Identity.csproj" />
   </ItemGroup>
 
 </Project>

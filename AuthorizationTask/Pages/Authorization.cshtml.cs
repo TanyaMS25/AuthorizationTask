@@ -31,16 +31,26 @@ namespace AuthorizationTask.Pages
 
         public IActionResult? OnPost()
         {
-            AuthUser = _dbContext.Users.FirstOrDefault(p => (p.Login == CheckUser.Login) & (p.Password == CheckUser.Password));
+            //Функционал нужно доработать. Обработать вариант с одинаковыми логинами пользователей.
 
-            if (AuthUser == null)
+            AuthUser = _dbContext.Users.FirstOrDefault(p => p.Login == CheckUser.Login);
+
+            if (AuthUser != null)
             {
-                authErrorMessage = "Авторизация не удалась, проверьте введенные значения.";
-                return null;
+                if (Identity.PasswordHasher.VerifyHashedPasswordV3(AuthUser.Password, CheckUser.Password))
+                {
+                    return RedirectToPage("UserPersonalAccount", new { id = AuthUser.Id });
+                }
+                else
+                {
+                    authErrorMessage = "Авторизация не удалась, проверьте введенные значения.";
+                    return null;
+                }
             }
             else
             {
-                return RedirectToPage("UserPersonalAccount", new { id = AuthUser.Id });
+                authErrorMessage = "Авторизация не удалась, проверьте введенные значения.";
+                return null;
             }
         }
     }
