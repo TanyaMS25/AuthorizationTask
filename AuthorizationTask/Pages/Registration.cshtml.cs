@@ -2,7 +2,6 @@ using AuthorizationTask.Data;
 using AuthorizationTask.Entities.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.ComponentModel.DataAnnotations;
 
 namespace AuthorizationTask.Pages
 {
@@ -32,7 +31,7 @@ namespace AuthorizationTask.Pages
                 _dbContext.Users.Add(NewUser);
                 _dbContext.SaveChanges();
 
-                return RedirectToPage("UserPersonalAccount");
+                return RedirectToPage("UserPersonalAccount", new { id = NewUser.Id });
                 
             }
             else

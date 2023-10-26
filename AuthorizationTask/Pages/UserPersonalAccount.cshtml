@@ -1,4 +1,7 @@
-﻿@page
+﻿@page "{id}"
 @model AuthorizationTask.Pages.UserPersonalAccountModel
 @{
+    <div class="text-center">
+        <h3>Добро пожаловать, @Model.User?.Name</h3>
+    </div>
 }

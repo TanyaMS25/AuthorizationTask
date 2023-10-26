@@ -1,8 +1,7 @@
+using AuthorizationTask.Data;
+using AuthorizationTask.Entities.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Razor;
-using AuthorizationTask.Entities.Entities;
-using AuthorizationTask.Data;
 
 namespace AuthorizationTask.Pages
 {
@@ -41,7 +40,7 @@ namespace AuthorizationTask.Pages
             }
             else
             {
-                return RedirectToPage("UserPersonalAccount");
+                return RedirectToPage("UserPersonalAccount", new { id = AuthUser.Id });
             }
         }
     }
