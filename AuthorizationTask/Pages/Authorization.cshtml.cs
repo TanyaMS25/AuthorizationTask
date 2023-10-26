@@ -2,19 +2,47 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Razor;
 using AuthorizationTask.Entities.Entities;
+using AuthorizationTask.Data;
 
 namespace AuthorizationTask.Pages
 {
-    public class AuthorizationModel
+    public class AuthorizationModel : PageModel
     {
-        public User User { get; set; }
-        
+        private readonly SqlServerDbContext _dbContext;
 
-        public string Login { get; set; } = "";
+        public User? AuthUser { get; set; } = new User();
+
+        [BindProperty]
+        public User CheckUser { get; set; }
+
+        public string authErrorMessage = "";
+
+        public AuthorizationModel(SqlServerDbContext dbContext)
+        {
+            if(dbContext != null)
+            {
+                _dbContext = dbContext;
+            }
+        }
 
         public void OnGet()
         {
+            
         }
-        
+
+        public IActionResult? OnPost()
+        {
+            AuthUser = _dbContext.Users.FirstOrDefault(p => (p.Login == CheckUser.Login) & (p.Password == CheckUser.Password));
+
+            if (AuthUser == null)
+            {
+                authErrorMessage = "Авторизация не удалась, проверьте введенные значения.";
+                return null;
+            }
+            else
+            {
+                return RedirectToPage("UserPersonalAccount");
+            }
+        }
     }
 }

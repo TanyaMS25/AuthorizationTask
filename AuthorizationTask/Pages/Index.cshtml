@@ -1,10 +1,12 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Домашняя старница";
+    ViewData["Title"] = "Домашняя страница";
 }
 
 <div class="text-center">
-    <h3>Незарегистрированный пользователь</h3>
-    <a class="nav-link text-dark" asp-area="" asp-page="/Authorization">Авторизоваться</a>
+    <p>Незарегистрированный пользователь</p>
+    <h3><a class="nav-link text-dark" asp-area="" asp-page="/Authorization">Авторизоваться</a></h3>
+    <p>Еще не зарегистрированы?</p>
+    <h5><a class="nav-link text-dark" asp-area="" asp-page="/Registration">Регистрация</a></h5>
 </div>

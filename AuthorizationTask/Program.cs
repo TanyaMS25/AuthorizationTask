@@ -1,3 +1,4 @@
+using AuthorizationTask.Data;
 using AuthorizationTask.Data.Migrations.Contexts;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,13 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContextFactory<MigrationsDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("AuthorizationTask.Data.Migrations"));
+    options.EnableSensitiveDataLogging(true);
+    options.EnableDetailedErrors();
+});
+
+builder.Services.AddDbContextFactory<SqlServerDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("AuthorizationTask.Data"));
     options.EnableSensitiveDataLogging(true);
     options.EnableDetailedErrors();
 });
